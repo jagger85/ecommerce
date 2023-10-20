@@ -3,15 +3,16 @@ import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
 import MainSection from './components/Main-section/MainSection'
 import FeaturedCollection from './components/featured-collection/FeaturedCollection'
+import Footer from './components/footer/Footer'
 function App() {
-
   return (
-    <>
-    <Header/>
-    <Hero/>
-    <MainSection/>
-    <FeaturedCollection/>
-    </>
+    <div className='App'>
+      <Header />
+      <Hero />
+      <MainSection />
+      <FeaturedCollection />
+      <Footer />
+    </div>
   )
 }
 
