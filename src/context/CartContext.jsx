@@ -13,7 +13,7 @@ const CartContextProvider = ({ children }) =>{
     ...state,
     addProduct
   }
-
+  
   return (
     <CartContext.Provider value={contextValues}>
       {

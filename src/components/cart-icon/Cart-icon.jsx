@@ -4,6 +4,7 @@ import './Cart-icon.styles.scss'
 import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
 function CartIcon() {
+  
   const { itemCount } = useContext(CartContext)
 
   return (
