@@ -1,17 +1,17 @@
 import React, { createContext, useState } from 'react'
 import SHOP_DATA from '../shop'
 
-export const ProductContext = createContext()
+export const ProductsContext = createContext()
 
 const ProductsContextProvider = ({ children }) => {
   const [products] = useState(SHOP_DATA)
   
   return(
-    <ProductContext.Provider value={{ products }}>
+    <ProductsContext.Provider value={{ products }}>
       {
         children
       }
-    </ProductContext.Provider>
+    </ProductsContext.Provider>
   )
 }
 
