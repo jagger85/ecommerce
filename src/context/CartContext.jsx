@@ -3,13 +3,15 @@ import CartReducer from './CartReducer'
 
 export const CartContext = createContext()
 
-const initialState = { cartItems: [], itemCount: 2, total: 0}
+const initialState = { cartItems: [], itemCount: 0, total: 0}
 
 const CartContextProvider = ({ children }) =>{
   const [ state, dispatch ] = useReducer(CartReducer, initialState)
-
+  const addProduct = (product) => dispatch({type: 'ADD_ITEM', payload: product })
+  
   const contextValues = {
-    ...state
+    ...state,
+    addProduct
   }
 
   return (
