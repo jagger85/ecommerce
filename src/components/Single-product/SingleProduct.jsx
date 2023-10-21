@@ -10,7 +10,7 @@ import { isInCart } from '../helpers'
 function SingleProduct() {
   const match = useMatch('/product/:id')
   const navigate = useNavigate()
-  const { addProduct, cartItems } = useContext(CartContext)
+  const { addProduct, cartItems, increase } = useContext(CartContext)
   const { products } = useContext(ProductsContext)
   const { id } = match.params
   const [product, setProduct] = useState(null)
@@ -41,7 +41,7 @@ function SingleProduct() {
           </div>
           <div className='add-to-cart-btns'>
             {isInCart(product, cartItems) ? (
-              <button className='button is-white nomad-btn' id='btn-white-outline' onClick={() => {}}>
+              <button className='button is-white nomad-btn' id='btn-white-outline' onClick={() => increase(product)}>
                 ADD MORE
               </button>
             ) : (
