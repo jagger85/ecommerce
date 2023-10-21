@@ -6,8 +6,8 @@ import Total from './Total'
 import './CartPage.style.scss'
 function CartPage() {
   
-  const { cartItems, itemCount, total } = useContext(CartContext)
-
+  const { cartItems, itemCount, total, increase, decrease, removeProduct, clearCart } = useContext(CartContext)
+  const funcs = { increase, decrease, removeProduct }
   return (
     <Layout>
       <>
@@ -20,10 +20,10 @@ function CartPage() {
         <div className='cart-page'>
           <div className='cart-item-container'>
             {
-              cartItems.map( item => <CartItem {...item} key={item.id}/> )
+              cartItems.map( item => <CartItem {...item} key={item.id} {...funcs}/> )
             }
           </div>
-        <Total itemCount={itemCount} total={total}/>
+        <Total itemCount={itemCount} total={total} clearCart={clearCart}/>
         </div>
         </>
       }
