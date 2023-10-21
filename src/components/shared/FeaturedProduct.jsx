@@ -6,6 +6,7 @@ import './FeaturedProduct.style.scss'
 
 function FeaturedProduct(product) {
   const { title, imageUrl, price, id } = product
+  
   const navigate = useNavigate()
   const { addProduct, cartItems } = useContext(CartContext)
   return (
@@ -19,7 +20,7 @@ function FeaturedProduct(product) {
         {
         !isInCart(product,cartItems) 
         ? <button className='button is-black nomad-btn' onClick={()=> addProduct(product)}>ADD TO CART</button>
-        : <button className='button is-black nomad-btn' onClick={()=>{}} id='btn-white-outline'>ADD MORE</button>
+        : <button className='button is-white nomad-btn' onClick={()=>{}} id='btn-white-outline'>ADD MORE</button>
         }
       </div>
     </div>
