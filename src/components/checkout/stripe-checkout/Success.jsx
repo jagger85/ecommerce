@@ -1,11 +1,16 @@
-import React, { useContext,useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CartContext } from '../../../context/CartContext'
 import Layout from '../../shared/Layout'
 function Success() {
-  const { clearCart } = useContext(CartContext)
-  useEffect(clearCart, [])
+  const { clearCart, cartItems } = useContext(CartContext)
+
+  useEffect(() => {
+    if (cartItems.length !== 0) clearCart()
+  }, [clearCart, cartItems])
+
   const navigate = useNavigate()
+  
   return (
     <Layout>
       <div className='checkout'>
