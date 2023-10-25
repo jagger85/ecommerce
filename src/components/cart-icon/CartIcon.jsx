@@ -1,6 +1,6 @@
 import React from 'react'
 import shoppingBag from '../../assets/cart.png'
-import './Cart-icon.styles.scss'
+import './CartIcon.styles.scss'
 import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { useNavigate } from 'react-router-dom'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.styles.scss'
-import CartIcon from '../cart-icon/cart-icon'
+import CartIcon from '../cart-icon/CartIcon'
 
 function Header() {
   return (
