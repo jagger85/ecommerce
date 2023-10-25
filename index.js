@@ -7,7 +7,7 @@ const app = express()
 const port = 8080
 
 app.use(express.json({
-  verify: (req,res,buffer) => req['rawBody']= buffer
+  verify: (req,res,buffer) => req['rawBody']= buffer,
 }))
 
 app.use(cors({origin: true}))
