@@ -5,10 +5,10 @@ const webHookHandlers = {
     console.log('Checkout completed succesfully', data)
     // Other business logic
   },
-  'payment_intent.succeded': (data) => {
+  'payment_intent.succeeded': (data) => {
     console.log('Payment succeded', data)
   },
-  'payment_intent.failed': (data) => {
+  'payment_intent.payment_failed': (data) => {
     console.log('Payment Failed', data)
   }
 }
