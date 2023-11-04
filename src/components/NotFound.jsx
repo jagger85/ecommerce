@@ -9,7 +9,7 @@ function NotFound() {
 
   return (
     <Layout>
-      <p style={style}>Unfortunately we can't find that page</p>
+      <p style={style}>Unfortunately we can`t find that page</p>
     </Layout>
   )
 }
