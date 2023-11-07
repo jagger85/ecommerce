@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': env
     },
-    plugins: [react(),eslintPlugin()],
+    plugins: [react()],
   //   server: {
   //      headers: {
   //        "Content-Security-Policy" : [
