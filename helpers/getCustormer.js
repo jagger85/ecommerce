@@ -2,7 +2,7 @@ const stripeAPI = require('../stripe')
 const firebase = require('../firebase')
 
 async function createCustomer(userId) {
-  const userSnapshot = await firebase.db.collection('user').doc(userId).get()
+  const userSnapshot = await firebase.db.collection('users').doc(userId).get()
 
   const { email } = userSnapshot.data()
 
