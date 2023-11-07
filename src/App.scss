@@ -10,7 +10,7 @@
   min-height: 100vh;
 }
 
-img{
+img {
   width: 100%;
 }
 
@@ -29,22 +29,22 @@ img{
 .featured-collection {
   margin-top: 6rem;
 
-  .featured-section-title{
+  .featured-section-title {
     font-size: 2rem;
   }
-  
+
   .featured-image {
     cursor: pointer;
   }
 
-  @media(min-width: 1024px) {
+  @media (min-width: 1024px) {
     .products {
       display: flex;
       justify-content: space-between;
       padding: 5px;
 
       .featured-product {
-        margin: 10px
+        margin: 10px;
       }
     }
   }
@@ -85,9 +85,9 @@ img{
 form {
   padding: 2rem;
   text-align: center;
-  input[type=text],
-  input[type=email],
-  input[type=password]{
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
     width: 50%;
   }
 
@@ -95,7 +95,7 @@ form {
     display: flex;
     justify-content: center;
   }
-  
+
   .submit {
     width: 200px;
   }
@@ -115,21 +115,29 @@ form {
   margin-bottom: 1rem;
 }
 
-#buy-it-now-btn{
+#buy-it-now-btn {
   &:hover {
     background-color: #606060;
   }
 }
 
-@media(min-widht: 1024px){
+@media (min-widht: 1024px) {
   form {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
-    input[type=text],
-    input[type=email],
-    input[type=password]{
+    input[type='text'],
+    input[type='email'],
+    input[type='password'] {
       width: 65%;
     }
-    
   }
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.5rem;
 }
