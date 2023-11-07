@@ -1,7 +1,7 @@
 const firebase = require('../firebase')
 
 async function decodeJWT(req, res, next) {
-  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer ')){
     const idToken = req.headers.authorization.split('Bearer')[1]
 
     try{
@@ -13,7 +13,6 @@ async function decodeJWT(req, res, next) {
     }
 
   }
-
   next()
 }
 
