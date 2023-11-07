@@ -24,7 +24,7 @@ async function getCustomer(userId) {
     return createCustomer(userId)
   } 
 
-  const customer = await stripeAPI.customer.retrieve(stripeCustomerId)
+  const customer = await stripeAPI.customers.retrieve(stripeCustomerId)
   return customer
 }
 
