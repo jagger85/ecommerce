@@ -24,7 +24,4 @@ export async function fetchFromAPI(endpoint, opts) {
   }else {
     throw new Error(res.statusText)
   }
-
-
-  return res.json()
 }
