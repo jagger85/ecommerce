@@ -6,9 +6,11 @@ import './MainSection.styles.scss'
 function MainSection() {
   let navigate = useNavigate()
   return (
+    <section className='main-section'>
+        <div className='background'/>
     <div className='main-section-container'>
       <div className='main-section-middle'>
-        <div className='ms-m-image'>
+        <div className='img-container'>
           <img src={studioBag} alt='studio bag' />
         </div>
         <div className='ms-m-description'>
@@ -18,12 +20,13 @@ function MainSection() {
             and everywhere in between, each Nomads piece is thoughtfully created to be the perfect balance of form and
             function.
           </p>
-          <button className='button is-black' id='shop-now' onClick={() => navigate('/product/1')}>
+          <button className='main-section-btn' id='shop-now' onClick={() => navigate('/product/1')}>
             STUDIO BAG
           </button>
         </div>
       </div>
     </div>
+    </section>
   )
 }
 
