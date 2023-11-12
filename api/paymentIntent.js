@@ -17,18 +17,22 @@ async function paymentIntent(req, res) {
   try {
     const itemsAmount = calculateOrderAmount(cartItems) 
     const itemsVat = calculateOrderAmount(cartItems)%12
+    console.log( 'Shipping details: ' + shipping)
+    let amount_deatils = {
+      "Items Amount" : itemsAmount,
+      "VAT": itemsVat,
+      "Delivery": 12
+    }
+    console.log( 'Amount details: ' + amount_deatils)
+
     paymentIntent = await stripeAPI.paymentIntents.create({
       amount: itemsAmount + itemsVat + delivery,
-      amount_details:{
-        "Items amount": {itemsAmount},
-        "Vat 12%": {itemsVat},
-        "Delivery service": {delivery}
-      },
       currency: 'usd',
       description,
       payment_method_types: ['card'],
       receipt_email,
       shipping,
+      amount_deatils
     })
 
     res.status(200).json({ clientSecret: paymentIntent.client_secret, id: paymentIntent.id })
