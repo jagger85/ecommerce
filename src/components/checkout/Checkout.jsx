@@ -3,7 +3,7 @@ import { CartContext } from '../../context/CartContext'
 import Layout from '../shared/Layout'
 import ShippingAddress from './custom-checkout/ShippingAddress'
 import CustomCheckout from './custom-checkout/CustomCheckout'
-
+import Ticket from './ticket/Ticket'
 import './Checkout.style.scss'
 
 function Checkout() {
@@ -18,10 +18,11 @@ function Checkout() {
 
   return (
     <Layout>
-      <div className='checkout'>
-        <h2>Checkout Summary</h2>
-        <h3>{`Total Items: ${itemCount}`}</h3>
-        <h3>{`Amount to Pay: $${total}`}</h3>
+      <div className='container checkout'>
+        <div className='title-container'>
+        Checkout
+        </div>
+        <Ticket/>
         <div style={addressShown}>
           <ShippingAddress setShipping={setShipping} />
         </div>
