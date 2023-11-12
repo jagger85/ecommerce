@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, createContext, useState } from 'react'
 import { auth, createUserProfileDocument } from '../firebase/index'
-
+import Spinner from '../components/spinner/Spinner'
 export const UserContext = createContext()
 
 function UserContextProvider({ children }) {
@@ -29,7 +29,7 @@ function UserContextProvider({ children }) {
   },[])
 
   const userContext = { user, loading }
-  if( loading ){return <div>Loaiding</div>}
+  if( loading ){return <Spinner/>}
   return (
     <UserContext.Provider value={userContext}>
       {
