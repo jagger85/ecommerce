@@ -4,14 +4,16 @@ import { CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useEle
 import { fetchFromAPI } from '../../helpers'
 import { UserContext } from '../../../context/UserContext'
 import { useContext } from 'react'
+import '../Checkout.style.scss'
 
 function CustomCheckout({ shipping, cartItems }) {
   const [processing, setProcessing] = useState(false)
   const [clientSecret, setClientSecret] = useState(null)
   const [error, setError] = useState(null)
   const [cards, setCards] = useState(null)
-  const [payment, setPaymentCard] = useState('')
+  const [paymentCard, setPaymentCard] = useState('')
   const [saveCard, setSavedCard] = useState(false)
+  const [paymentIntentId, setPaymentIntentId] = useState(null)
   const stripe = useStripe()
   const elements = useElements()
   const navigate = useNavigate()
@@ -37,6 +39,7 @@ function CustomCheckout({ shipping, cartItems }) {
     if (shipping) {
       const body = {
         cartItems: items,
+        delivery: 12,
         shipping: {
           name: shipping.name,
           address: {
@@ -47,21 +50,21 @@ function CustomCheckout({ shipping, cartItems }) {
         receipt_email: shipping.email,
       }
       const customCheckout = async () => {
-        const { clientSecret } = await fetchFromAPI('create-payment-intent', {
+        const { clientSecret, id } = await fetchFromAPI('create-payment-intent', {
           body,
         })
         setClientSecret(clientSecret)
+        setPaymentIntentId(id)
       }
       customCheckout()
     }
   }, [shipping, cartItems])
 
   const handleCheckout = async () => {
-    
     setProcessing(true)
     let si
     //check if user has selected to save card
-    if(saveCard) {
+    if (saveCard) {
       //make to create a setup intent
       si = await fetchFromAPI('save-payment-method')
     }
@@ -73,17 +76,35 @@ function CustomCheckout({ shipping, cartItems }) {
     if (payload.error) {
       setError(`Payment Failed: ${payload.error.message}`)
     } else {
-      if(saveCard && si) {
+      if (saveCard && si) {
         //send the customers details to be saved with stripe
-        await stripe.confirmCardSetup(si.client_secret,{
+        await stripe.confirmCardSetup(si.client_secret, {
           payment_method: {
-            card: elements.getElement(CardNumberElement)
-          }
+            card: elements.getElement(CardNumberElement),
+          },
         })
+      } else {
+        navigate('/success')
       }
-      else {
       navigate('/success')
-      }
+    }
+  }
+
+  const savedCardCheckout = async () => {
+    setProcessing(true)
+    // update the payment intent to iclude the customer parameter
+    const { clientSecret } = await fetchFromAPI('update-payment-intent', {
+      body: { paymentIntentId },
+      mehtod: 'PUT',
+    })
+    const payload = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: paymentCard,
+    })
+
+    if (payload.error) {
+      setError(`Payment Failed: ${payload.error.message}`)
+      setProcessing(false)
+    } else {
       navigate('/success')
     }
   }
@@ -132,38 +153,58 @@ function CustomCheckout({ shipping, cartItems }) {
   }
 
   return (
-    <div>
+    <div className='container'>
       {user && cards && cards.length > 0 && (
-        <div>
-          <h4>Pay with saved card</h4>
-          <select value={payment} onChange={(e) => setPaymentCard(e.target.value)}>
+        <div className='subcontainer'>
+          <div className='subtitle'>Pay with saved card</div>
+          <select className='saved-card' value={paymentCard} onChange={(e) => setPaymentCard(e.target.value)}>
             {cardOption}
           </select>
+          <button
+            type='submit'
+            disabled={processing || !paymentCard}
+            className='outlined-btn saved-card-btn'
+            onClick={() => {
+              savedCardCheckout()
+            }}>
+            {processing ? 'PROCESSING' : 'PAY WITH SAME CARD'}
+          </button>
         </div>
       )}
-      <h4>Enter Payment Details</h4>
-      <div className='stripe-card'>
-        <CardNumberElement className='card-element' options={cardStyle} onChange={cardHandleChange} />
-      </div>
-      <div className='stripe-card'>
-        <CardExpiryElement className='card-element' options={cardStyle} onChange={cardHandleChange} />
-      </div>
-      <div className='stripe-card'>
-        <CardCvcElement className='card-element' options={cardStyle} onChange={cardHandleChange} />
-      </div>
-      {user && (
-        <div className='saved-card'>
-          <label>Save Card</label>
-          <input type='checkbox' checked={saveCard} onChange={(e) => setSavedCard(e.target.checked)} />
+
+      <div className='subcontainer'>
+        <div className='subtitle'>Enter Payment Details</div>
+        <div className='stripe-card'>
+          <CardNumberElement className='card-element' options={cardStyle} onChange={cardHandleChange} />
         </div>
-      )}
-      <div className='submit-btn'>
-        <button disabled={processing} className='button is-black nomad-btn submit' onClick={() => handleCheckout()}>
-          {processing ? 'PROCESSING' : 'PAY'}
-        </button>
+        <div className='stripe-card'>
+          <CardExpiryElement className='card-element' options={cardStyle} onChange={cardHandleChange} />
+        </div>
+        <div className='stripe-card'>
+          <CardCvcElement className='card-element' options={cardStyle} onChange={cardHandleChange} />
+        </div>
+        {user && (
+          <div>
+            <label className='saved-card-checkbox-container'>
+              Save Card
+              <input
+                className='checkbox'
+                type='checkbox'
+                checked={saveCard}
+                onChange={(e) => setSavedCard(e.target.checked)}
+                />
+              <span className='checkmark'></span>
+            </label>
+          </div>
+        )}
+        <div className='submit-btn' style={{ margin: '1rem 1rem 0 1rem' }}>
+          <button disabled={processing} className='outlined-btn submit' onClick={() => handleCheckout()}>
+            {processing ? 'PROCESSING' : 'PAY'}
+          </button>
+        </div>
+        {error && <p className='error-message'>{error}</p>}
       </div>
-      {error && <p className='error-message'>{error}</p>}
-    </div>
+      </div>
   )
 }
 

@@ -12,20 +12,26 @@ function FeaturedProduct(product) {
   return (
     <div className='featured-product'>
       <div className='featured-image' onClick={() => navigate(`/product/${id}`)}>
-        <img src={imageUrl} alt='product' />
+        <img src={imageUrl} alt='product' className='feature-product-img' />
       </div>
-      <div className='name-price'>
+      <div className='product-name'>
         <h3>{title}</h3>
-        <p>$ {price}</p>
-        {!isInCart(product, cartItems) ? (
-          <button className='button is-black nomad-btn' onClick={() => addProduct(product)}>
-            ADD TO CART
-          </button>
-        ) : (
-          <button className='button is-white nomad-btn' onClick={() => increase(product)} id='btn-white-outline'>
-            ADD MORE
-          </button>
-        )}
+      </div>
+      <div className='featured-product-price-btn-container'>
+        <div className='featured-product-price'>
+          <p className='price'>$ {price}</p>
+        </div>
+        <div className='featured-product-btn-container'>
+          {!isInCart(product, cartItems) ? (
+            <button className='featured-product-btn' onClick={() => addProduct(product)}>
+              ADD TO CART
+            </button>
+          ) : (
+            <button className='featured-product-btn' onClick={() => increase(product)}>
+              ADD MORE
+            </button>
+          )}
+        </div>
       </div>
     </div>
   )

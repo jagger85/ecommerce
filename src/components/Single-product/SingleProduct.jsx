@@ -37,25 +37,25 @@ function SingleProduct() {
         <div className='product-details'>
           <div className='name-price'>
             <h3>{title}</h3>
-            <p>$ {price}</p>
+            <p style={{fontFamily:'Back'}}>$ {price}</p>
+          </div>
+          <div className='product-description'>
+            <p>{description}</p>
           </div>
           <div className='add-to-cart-btns'>
             {isInCart(product, cartItems) ? (
-              <button className='button is-white nomad-btn' id='btn-white-outline' onClick={() => increase(product)}>
+              <button className='outlined-btn' onClick={() => increase(product)}>
                 ADD MORE
               </button>
             ) : (
-              <button className='button is-white nomad-btn' id='btn-white-outline' onClick={() => addProduct(product)}>
+              <button className='outlined-btn' onClick={() => addProduct(product)}>
                 ADD TO CART
               </button>
             )}
 
-            <button className='button is-black nomad-btn' id='btn-white-outline'>
+            <button className='outlined-btn'  onClick={()=>navigate('/checkout')}>
               PROCEED TO CHECKOUT
             </button>
-          </div>
-          <div className='product-description'>
-            <p>{description}</p>
           </div>
         </div>
       </div>

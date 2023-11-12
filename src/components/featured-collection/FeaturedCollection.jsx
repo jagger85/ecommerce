@@ -10,7 +10,9 @@ function FeaturedCollection() {
 
   return (
     <div className='featured-collection container'>
-      <h2 className='featured-section-title'>Featured Collection</h2>
+      <div className='title-container'>
+      <span>Featured Collection</span>
+      </div>
       <div className='products'>{productItems}</div>
     </div>
   )

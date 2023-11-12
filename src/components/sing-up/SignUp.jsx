@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Formik } from 'formik'
 import { auth, createUserProfileDocument } from '../../firebase'
 import { useNavigate } from 'react-router-dom'
-import './SignUp.style.scss'
 
 function SignUp() {
 
@@ -46,8 +45,10 @@ function SignUp() {
 
   return (
     <Layout>
-      <div className='sign-up'>
-        <h1>SingUp</h1>
+      <div className='container'>
+        <div className='title-container'>
+          Sign Up
+        </div>
         <div className='form-container'>
           <Formik
             initialValues={initialValues}
@@ -56,42 +57,33 @@ function SignUp() {
             {({ values, errors, handleChange, handleSubmit, isSubmitting }) => {
               const { firstname, email, password } = errors
               return (
-                <form onSubmit={handleSubmit}>
-                  <div>
+                <form autocomplete="off" onSubmit={handleSubmit}>
                     <input
                       type='text'
                       name='firstname'
                       onChange={handleChange}
                       value={values.firstname}
                       placeholder='First Name'
-                      className={'nomad-input' + (firstname ? 'error' : '')}
+                      className={firstname ? 'error' : ''}
                     />
-                  </div>
-                  <div>
                     <input
                       type='email'
                       name='email'
                       onChange={handleChange}
                       value={values.email}
                       placeholder='Email'
-                      className={'nomad-input' + (email ? 'error' : '')}
                     />
-                  </div>
-                  <div>
                     <input
                       type='password'
                       name='password'
                       onChange={handleChange}
                       value={values.password}
                       placeholder='Password'
-                      className={'nomad-input' + (password ? 'error' : '')}
+                      className={password ? 'error' : ''}
                     />
-                  </div>
-                  <div className='submit-btn'>
-                    <button type='submit' disabled={isSubmitting} className='button is-black nomad-btn submit'>
+                    <button type='submit' disabled={isSubmitting} className='outlined-btn submit-btn'>
                       Sign Up
                     </button>
-                  </div>
                   <div className='error-message'>
                     {
                       error && <p>{error.message}</p>

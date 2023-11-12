@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Checkout.style.scss'
 import { Formik } from 'formik'
 
 const validate = values => {
@@ -20,21 +21,20 @@ function ShippingAddress({setShipping}) {
   }
 
   return (
-    <div>
-      <h4>Shipping Address</h4>
+    <div className='subcontainer'>
+      <div className='subtitle'>Shipping Address</div>
       <Formik 
         initialValues={initialValues}
         validate={validate}
         onSubmit={(values)=>{
-          console.log('values', values)
           setShipping(values)
         }}
       >
         {({ values, errors, handleChange, handleSubmit }) => {
           const { name, email, address } = errors
           return (
-            <form onSubmit={handleSubmit}>
-              <div>
+            <form className='shipping-form' onSubmit={handleSubmit}>
+              <div className='shipping-inputs'>
                 <input
                   type='text'
                   name='name'
@@ -60,11 +60,11 @@ function ShippingAddress({setShipping}) {
                   placeholder='Address'
                 />
               </div>
-              <div className='submit-btn'>
-                <button type='submit' className='button is-black nomad-btn submit'>
-                  CONTINUE
+
+                <button type='submit' className='outlined-btn'>
+                  PROCEED TO PAY
                 </button>
-              </div>
+
             </form>
           )
         }}

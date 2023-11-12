@@ -1,35 +1,38 @@
 import React from 'react'
-import { PlusCircleIcon, MinusCircleIcon, TrashIcon } from '../../icons'
 import './CartPage.style.scss'
 function CartItem(props) {
   const { id, title, imageUrl, price, quantity, description, increase, decrease, removeProduct } = props
-  const product = { title, imageUrl, price, quantity, id, description}
+  const product = { title, imageUrl, price, quantity, id, description }
   return (
     <div className='cart-item'>
-      <div className='item-image'>
-        <img src={imageUrl} alt='product' />
+      <div className='image-price-name'>
+        <div className='item-image'>
+          <img src={imageUrl} alt='product' />
+        </div>
+        <div className='name-price'>
+          <div className='cart-product-name'>{title}</div>
+          <div className='cart-product-name'>$ {price}</div>
+        </div>
       </div>
-      <div className='name-price'>
-        <h4>{title}</h4>
-        <p>$ {price}</p>
-      </div>
-      <div className='quantity'>
-        <p>{`Quantity: ${quantity}`}</p>
-      </div>
-      <div className='btns-container'>
-        <button className='btn-increase' onClick={()=> increase(product)}>
-          <PlusCircleIcon width='20px' />
-        </button>
-        {quantity === 1 && (
-          <button className='btn-trash' onClick={()=> removeProduct(product)}>
-            <TrashIcon width='20px' />
-          </button>
-        )}
-        {quantity > 1 && (
-          <button className='btn-decrease' onClick={()=> decrease(product)}>
-            <MinusCircleIcon width='20px' />
-          </button>
-        )}
+      <div className='quantity-btns'>
+        <div className='quantity'>
+          <p>{`Quantity: ${quantity}`}</p>
+        </div>
+        <div className='btns-container'>
+          <div className='btn increase' onClick={() => increase(product)}>
+            +
+          </div>
+          {quantity === 1 && (
+            <div className='btn trash' onClick={() => removeProduct(product)}>
+              x
+            </div>
+          )}
+          {quantity > 1 && (
+            <div className='btn decrease' onClick={() => decrease(product)}>
+              -
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
