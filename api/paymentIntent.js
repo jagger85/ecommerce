@@ -11,12 +11,18 @@ function calculateOrderAmount(cartItems){
 
 async function paymentIntent(req, res) {
   //For security reasons calculate the total amount here on the backend
-  const { cartItems, description, receipt_email, shipping } = req.body
+  const { cartItems, description, receipt_email, shipping, delivery } = req.body
   let paymentIntent
 
   try {
+    const itemsAmount = calculateOrderAmount(cartItems) 
     paymentIntent = await stripeAPI.paymentIntents.create({
-      amount: calculateOrderAmount(cartItems),
+      amount: itemsAmount + itemsAmount%21 + delivery,
+      amount_details:{
+        "Items amount": itemsAmount,
+        "Vat 12%": itemsAmount % 21,
+        "Delivery service": delivery
+      },
       currency: 'usd',
       description,
       payment_method_types: ['card'],
