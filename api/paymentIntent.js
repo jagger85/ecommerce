@@ -16,12 +16,13 @@ async function paymentIntent(req, res) {
 
   try {
     const itemsAmount = calculateOrderAmount(cartItems) 
+    const itemsVat = calculateOrderAmount(cartItems)%12
     paymentIntent = await stripeAPI.paymentIntents.create({
-      amount: itemsAmount + itemsAmount%21 + delivery,
+      amount: itemsAmount + itemsVat + delivery,
       amount_details:{
-        "Items amount": itemsAmount,
-        "Vat 12%": itemsAmount % 21,
-        "Delivery service": delivery
+        "Items amount": {itemsAmount},
+        "Vat 12%": {itemsVat},
+        "Delivery service": {delivery}
       },
       currency: 'usd',
       description,
