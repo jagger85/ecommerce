@@ -1,0 +1,42 @@
+.nav-menu{
+ &.collapsed{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2rem;
+    .logo {
+      font-size: 1.5rem
+    }
+    .logo-image{
+      width: 6rem;
+      height: 100%;
+      margin-right: 0.5rem;
+    }
+    .brand{
+      font-family: 'Charlotte';
+      font-size: 3rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+ul{
+  list-style-type: none;
+  margin: 0 0 2rem 0;
+  margin-left: auto;
+  
+  li{
+    
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    margin: 0.5rem 1rem;
+    cursor: pointer;
+  }
+}
+a{
+  text-decoration: none;
+  &:focus, &:hover, &:visited {
+    color: black;
+  }
+}

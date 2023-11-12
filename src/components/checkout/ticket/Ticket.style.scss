@@ -1,0 +1,22 @@
+.ticket-container{
+  min-width: 25rem;
+  margin: 0 2rem;
+}
+
+.ticket-table{
+  width: 100%;
+  font-family: 'Courier New';
+}
+.separator{
+  border-bottom: 1px solid black;
+  margin: 1rem 0 1rem 0;
+}
+.table-description{
+  text-align: left;
+}
+.table-amount{
+  text-align: right;
+}
+.table-quantity{
+  text-align: right;
+}

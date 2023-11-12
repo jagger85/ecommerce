@@ -5,6 +5,24 @@
 @import '../node_modules/bulma/sass/elements/container.sass';
 @import '../node_modules/bulma/sass/layout/hero.sass';
 
+
+@font-face {
+  font-family: 'Charlotte';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Charlotte'), url('./assets/fonts/Charlotte.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Back';
+  src: url('./assets/fonts/Back.ttf');
+}
+
+body{
+font-family: 'Courier New', Courier, monospace;
+ background-color: #E7DAC9;
+ margin: 0px;
+}
+
 .app {
   position: relative;
   min-height: 100vh;
@@ -14,11 +32,42 @@ img {
   width: 100%;
 }
 
-.nomad-container {
-  width: 60%;
-  margin: 0 auto;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+.subcontainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.title-container{
+  font-family: 'Charlotte';
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+.subtitle{
+  font-weight: bold;
 }
 
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  min-width: 30rem;
+  & input{
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  & button{
+    margin-top: 1rem;
+  }
+}
 #shop-now {
   font-weight: 600;
   &:hover {
@@ -27,11 +76,8 @@ img {
 }
 
 .featured-collection {
-  margin-top: 6rem;
-
-  .featured-section-title {
-    font-size: 2rem;
-  }
+  margin-top: 2rem;
+  
 
   .featured-image {
     cursor: pointer;
@@ -75,29 +121,68 @@ img {
   min-height: 44px;
 }
 
-//input styles
-.nomad-input {
+.outlined-btn{
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: transparent;
+  display: block;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 1rem;
+  line-height: 1.4;
+  padding-left: 5px;
+  padding-right: 5px;
+  white-space: normal;
+  min-height: 44px;
+  font-weight: bold;
+  &:hover{
+    border: none;
+    color: brown;
+    font-weight: bold;
+  }
 }
 
+.outlined-red{
+  border: 1px solid brown
+}
+
+//input styles
+::placeholder{
+  font-family: 'Courier New', Courier, monospace;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  transition: background-color 5000s;
+}
+input{
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 10px 10px 5px 10px;
+  width: 100%;
+  &:focus{
+    outline-width: 0;
+  }
+}
+
+
 form {
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  min-width: 30rem;
   text-align: center;
   input[type='text'],
   input[type='email'],
+  input[type='address'],
   input[type='password'] {
-    width: 50%;
+    width: 65%;
   }
-
-  .submit-btn {
-    display: flex;
-    justify-content: center;
-  }
-
-  .submit {
-    width: 200px;
+  .submit-btn{
+    max-width: 10rem;
   }
 }
 
@@ -138,6 +223,6 @@ form {
 }
 
 .error-message {
-  color: red;
-  font-size: 1.5rem;
+  color: brown;
+  font-size: 1rem;
 }

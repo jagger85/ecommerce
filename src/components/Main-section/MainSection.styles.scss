@@ -1,26 +1,64 @@
+.main-section {
+  position: relative;
+  padding: 5px;
+}
+
+.main-section-btn {
+  padding: 10px;
+  border: 2px solid #c19277;
+  border-radius: 2px;
+  color: #c19277;
+  background-color: transparent;
+  &:hover {
+    color: brown !important;
+    border-color: brown;
+    background-color: transparent !important;
+  }
+}
+
 .main-section-container {
   width: 70%;
   margin: 3rem auto;
-
+  
   h2 {
     font-size: 1.1rem;
   }
-
+  
   .ms-m-description {
     p {
       font-size: 0.933rem;
       line-height: 1.5;
     }
   }
-
+  
   @media (min-width: 1024px) {
+    .background {
+      z-index: 0;
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      height: 100px;
+      width: 100%;
+      background-color: burlywood;
+    }
     .main-section-middle {
       display: flex;
       justify-content: space-between;
-
-      .ms-image {
-        max-width: 545px;
-        flex: 1 0 545px;
+      
+      .img-container {
+        rotate: -5deg;
+        height: fit-content;
+        width: auto;
+        border-top: 20px;
+        border-left: 15px;
+        border-right: 15px;
+        border-bottom: 40px;
+        border-style: solid;
+        background-color: ghostwhite;
+        border-color: ghostwhite;
+        box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.14);
+        -webkit-box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.14);
+        -moz-box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.14);
       }
       .ms-m-description {
         margin-left: 30px;
