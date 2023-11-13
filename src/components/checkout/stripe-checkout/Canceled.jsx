@@ -7,13 +7,15 @@ function Canceled() {
   const navigate = useNavigate()
   return (
     <Layout>
-      <div className='checkout'>
-        <h1>Payment failed</h1>
-        <p>Payment was not successful</p>
+      <div className='container'>
+        <div className='subcontainer' style={{marginTop: '3rem'}}>
+        <div style={{fontSize:'2rem', textAlign:'center', fontWeight:'bold'}}>Payment failed</div>
+        <div style={{textAlign:'center'}}>Payment was not successful</div>
         <div>
-          <button className='button is-black nomad-btn submit' onClick={() => navigate('/shop')}>
+          <button className='outlined-btn' onClick={() => navigate('/shop')}>
             Continue Shopping
           </button>
+        </div>
         </div>
       </div>
     </Layout>

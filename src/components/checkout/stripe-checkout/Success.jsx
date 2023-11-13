@@ -13,13 +13,16 @@ function Success() {
   
   return (
     <Layout>
-      <div className='checkout'>
-        <h1>Thank you for your order</h1>
-        <p>We are currently processing your order and will send you a confirmation email shortly</p>
+      <div className='container'>
+        <div className='subcontainer' style={{marginTop: '3rem'}}>
+
+        <div style={{fontSize:'2rem', textAlign:'center', fontWeight:'bold'}}>Thank you for your order</div>
+        <span style={{textAlign:'center'}}>We are currently processing your order and will send you a confirmation email shortly</span>
         <div>
-          <button className='button is-black nomad-btn submit' onClick={() => navigate('/shop')}>
+          <button className='outlined-btn' onClick={() => navigate('/shop')}>
             Continue Shopping
           </button>
+        </div>
         </div>
       </div>
     </Layout>
