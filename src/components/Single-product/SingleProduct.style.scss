@@ -21,8 +21,11 @@
       margin: 1rem 0;
     }
     .add-to-cart-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       margin: 2rem 0;
-    }
+      }
     .product-description {
       p {
         line-height: 1.5;
